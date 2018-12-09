@@ -13,4 +13,20 @@ public class SendafoxApplicationTests {
 	public void contextLoads() {
 	}
 
+
+	@Test
+	public void testSendMessage() throws InterruptedException {
+
+		Group listOfStudents = new Group();
+
+		listOfStudents.addRecipent(new Recipient("Dan", "", "+18327072323"));
+		listOfStudents.addRecipent(new Recipient("Sara","", "+18329203060"));
+
+		for (Recipient recipient : listOfStudents.recipients) {
+			TwillioSender.send(recipient.phone, "+19252332108", "Hi " + recipient.firstName);
+
+			// Saving to DB
+		}
+
+	}
 }
