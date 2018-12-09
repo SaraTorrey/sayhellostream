@@ -11,6 +11,7 @@
     <title>Send A Fox</title>
   </head>
   <body>
+  <form action="send" method="post">
     <div class="container">
         <div>
             <h1 class="display-4" style="text-align: center; margin-bottom: 2.5rem;">Send A Fox</h1>
@@ -19,21 +20,21 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="validationTooltip01">First name</label>
-                <input type="text" class="form-control" id="validationTooltip01" required>
+                <input type="text" class="form-control" name="first" id="validationTooltip01" required>
                 <div class="valid-tooltip">
                     Looks good!
                 </div>
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="validationTooltip02">Last name</label>
-                <input type="text" class="form-control" id="validationTooltip02" required>
+                <input type="text" class="form-control" name="last" id="validationTooltip02" required>
                 <div class="valid-tooltip">
                     Looks good!
             </div>
              </div>
              <div class="col-md-4 mb-3">
                     <label for="validationTooltip03">Phone #</label>
-                    <input type="tel" class="form-control" required>
+                    <input type="tel" name="phone" class="form-control" required>
                     <div class="valid-tooltip">
                         Looks good!
                 </div>
@@ -41,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label for="exampleFormControlTextarea1">Example textarea</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" name="body" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
             <div class="input-group-prepend">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Month</button>                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -118,12 +119,12 @@
             
             </div> 
             <div>
-                    <button type="button" class="btn btn-secondary">Submit</button>
+                    <button type="submit" class="btn btn-secondary">Submit</button>
             </div>     
-            </form>
+
         </div>
     </div>
-
+        </form>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
