@@ -24,9 +24,15 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "anotherPage")
-    public String anotherPage() {
+    @GetMapping(value = "landing")
+    public String landing() {
 
-        return "anotherPage";
+        return "landing";
+    }
+    
+    @GetMapping(value = "sendText")
+    public String sendText() {
+
+        return "sendText";
     }
 }
