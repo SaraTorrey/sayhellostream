@@ -21,7 +21,7 @@ public class IndexController {
 
         TwillioSender.send(phone, "+19252332108", body);
 
-        return "index";
+        return "mainTemplate";
     }
 
     @GetMapping(value = "landing")
