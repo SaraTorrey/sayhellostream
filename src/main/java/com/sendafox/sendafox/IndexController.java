@@ -10,12 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/")
 public class IndexController {
 
-    @GetMapping(name = "index")
-    public String index() {
-
-        return "index";
-    }
-
     @PostMapping(value = "send")
     public String send(@RequestParam String first, @RequestParam String last, @RequestParam String phone, @RequestParam String body) {
 
@@ -30,9 +24,29 @@ public class IndexController {
         return "landing";
     }
     
-    @GetMapping(value = "sendText")
+    @GetMapping(value = "sendText1")
     public String sendText() {
 
         return "sendText";
+    }
+
+    // Pages
+
+    @GetMapping(value = "userProfile")
+    public String userProfile() {
+
+        return "userProfile";
+    }
+
+    @GetMapping(value = "1")
+    public String one() {
+
+        return "1";
+    }
+
+    @GetMapping(value = "sendEmail")
+    public String sendEmail() {
+
+        return "sendEmail";
     }
 }
