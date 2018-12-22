@@ -68,4 +68,10 @@ public class IndexController {
 
         return "sendEmail";
     }
+
+    @GetMapping(value = "login")
+    public String login() {
+
+        return "index";
+    }
 }
