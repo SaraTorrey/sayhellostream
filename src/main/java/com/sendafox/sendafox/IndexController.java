@@ -1,7 +1,13 @@
 package com.sayhellostream.sayhellostream;
 
+import java.time.LocalDate;
+
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,6 +41,19 @@ public class IndexController {
     @GetMapping(value = "userProfile")
     public String userProfile() {
 
+        return "userProfile";
+    }
+
+    @GetMapping(value = "userProfile/{name}/{age}")
+    public String userProfile( @PathVariable String name, @PathVariable Long age, Model model ) {
+
+        model.addAttribute("name", name);
+
+        LocalDate birthDate = LocalDate.now();
+        birthDate = birthDate.minusYears(age);
+
+        model.addAttribute("birthYear", birthDate.getYear());
+    
         return "userProfile";
     }
 
