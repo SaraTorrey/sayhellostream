@@ -31,6 +31,12 @@ public class IndexController {
         return "landing";
     }
 
+    @GetMapping(value = "contacts")
+    public String contacts() {
+
+        return "contacts";
+    }
+
     @GetMapping(value = "history")
     public String history() {
 
