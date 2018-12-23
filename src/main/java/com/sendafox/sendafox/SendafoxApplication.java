@@ -65,6 +65,8 @@ public class SendafoxApplication {
 		companyRepo.save( company2 );
 //        loadDataForCompany( company2 );
 		createUser( "sara", "sara", "Sara", "Torrey", "sara.moravej@gmail.com", company2 );
+		createUser( "owen", "owen", "Oweny", "Torrey", "owen.torrey@gmail.com", company2 );
+
 	}
 
 	private void createUser( String username,
@@ -93,6 +95,7 @@ public class SendafoxApplication {
 		student.setLessonType(LessonType.VOICE );
 		student.setLessonDay(LessonDay.MONDAY );
 		student.setLessonTime( new org.joda.time.LocalTime( 14, 0, 0, 0 ) );
+		
 		Payment payment = new Payment();
 		payment.setDate(LocalDate.now() );
 		payment.setAmount(Money.of(CurrencyUnit.USD, BigDecimal.TEN ) );
@@ -117,8 +120,9 @@ public class SendafoxApplication {
 		studentRepo.save( student );
 		studentRepo.save( new Student( "Sara", "Torrey", "Monday 3pm", company ) );
 		studentRepo.save( new Student( "Nino", "Torrey", "Wednesday 4pm", company ) );
-		studentRepo.save( new Student( "Hansel", "Torrey", "Friday 3pm", company ) );
-		studentRepo.save( new Student( "Owen", "Torrey", "Monday 4pm", company ) );
+		studentRepo.save( new Student( "Owen", "Torrey", "Monday 1pm", company ) );
+		studentRepo.save( new Student( "Cameron", "Torrey", "Monday 2pm", company ) );
+
 	}
 }
 
