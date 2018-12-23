@@ -16,26 +16,33 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private AppUserDetailsService userDetailsService;
 
     @Autowired
-    public void configureGlobal( AuthenticationManagerBuilder auth ) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService( userDetailsService )
-                .passwordEncoder( new BCryptPasswordEncoder() );
+        auth.userDetailsService(userDetailsService)
+            .passwordEncoder(new BCryptPasswordEncoder());
     }
 
     @Override
-    protected void configure( HttpSecurity httpSecurity ) throws Exception {
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-        String[] authorizedEndpoints = { "/assets/**" };
+        String[] authorizedEndpoints = {"/css/**",
+                "/fontds.nucleo/**",
+                "/images/**",
+                "/img/**",
+                "/js/**",
+                "/scss/**",
+                "/vendor/**"
+        };
         httpSecurity.authorizeRequests()
-                .antMatchers( authorizedEndpoints ).permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage( "/login" ).defaultSuccessUrl( "/" )
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                    .antMatchers(authorizedEndpoints).permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                    .formLogin()
+                    .loginPage("/login").defaultSuccessUrl("/")
+                    .permitAll()
+                    .and()
+                    .logout()
+                    .permitAll();
 
         httpSecurity.csrf().disable();
     }
