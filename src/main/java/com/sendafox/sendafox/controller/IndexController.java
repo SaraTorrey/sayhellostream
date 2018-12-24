@@ -42,19 +42,13 @@ public class IndexController {
 
         return "history";
     }
-    
-    @GetMapping(value = "sendText1")
-    public String sendText() {
-
-        return "sendText";
-    }
 
     // Pages
 
-    @GetMapping(value = "userProfile")
-    public String userProfile() {
+    @GetMapping(value = "sendText")
+    public String sendText() {
 
-        return "userProfile";
+        return "sendText";
     }
 
     @GetMapping(value = "userProfile/{name}/{age}")
