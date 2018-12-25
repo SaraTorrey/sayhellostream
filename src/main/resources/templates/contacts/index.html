@@ -53,6 +53,7 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                             <tr>
+                                <th scope="col"></th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Category</th>
@@ -60,6 +61,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="row : ${contactList}">
+                                <th scope="row">
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <!--<a href="#" class="avatar rounded-circle mr-3">-->
