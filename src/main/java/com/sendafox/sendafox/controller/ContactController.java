@@ -5,6 +5,7 @@ import com.sayhellostream.sayhellostream.domain.Contact;
 import com.sayhellostream.sayhellostream.domain.Payment;
 import com.sayhellostream.sayhellostream.repo.PaymentRepo;
 import com.sayhellostream.sayhellostream.service.ContactService;
+import com.sayhellostream.sayhellostream.service.WebService;
 import com.sayhellostream.sayhellostream.util.IdObfuscator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,6 +29,9 @@ public class ContactController {
     @Resource
     PaymentRepo paymentRepo;
 
+    @Resource
+    WebService webService;
+
     @GetMapping
     public String main( Model model ) {
 
@@ -39,7 +43,10 @@ public class ContactController {
     @GetMapping( "add" )
     public String add( Model model ) {
 
-        model.addAttribute( "entity", new Contact() );
+        Contact contact = new Contact();
+        contact.setCompany(webService.currentUser().getCompany());
+
+        model.addAttribute("entity", contact);
 
         return "contacts/edit";
     }
@@ -68,12 +75,12 @@ public class ContactController {
         return "redirect:/contacts/details/" + id ;
     }
 
-    @PostMapping( "edit/" )
+    @PostMapping( "edit" )
     public String edit( @ModelAttribute( "entity" ) Contact entity ) {
 
         contactService.save( entity );
 
-        return "redirect:/contacts/details/" + IdObfuscator.enc(entity.getId() );
+        return "redirect:/contacts/";
     }
 
 
