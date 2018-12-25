@@ -1,17 +1,17 @@
 package com.sayhellostream.sayhellostream.repo;
 
-import com.sayhellostream.sayhellostream.domain.Student;
+import com.sayhellostream.sayhellostream.domain.Contact;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public interface StudentRepo extends PagingAndSortingRepository<Student, Long> {
+public interface ContactRepo extends PagingAndSortingRepository<Contact, Long> {
 
-    Student findOneByIdAndCompanyId(Long id, Long companyId);
+    Contact findOneByIdAndCompanyId(Long id, Long companyId);
     void deleteOneByIdAndCompanyId(Long id, Long companyId);
 
-    List<Student> findByCompanyId(Long companyId);
+    List<Contact> findByCompanyId(Long companyId);
 
 }

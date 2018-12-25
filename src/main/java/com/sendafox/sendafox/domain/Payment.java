@@ -18,7 +18,7 @@ public class Payment extends BaseEntity {
     private Company company;
 
     @ManyToOne()
-    private Student student;
+    private Contact contact;
 
     public LocalDate getDate() {
 
@@ -50,14 +50,14 @@ public class Payment extends BaseEntity {
         this.type = type;
     }
 
-    public Student getStudent() {
+    public Contact getContact() {
 
-        return student;
+        return contact;
     }
 
-    public void setStudent( Student student ) {
+    public void setContact(Contact contact) {
 
-        this.student = student;
+        this.contact = contact;
     }
 
     public String getNotes() {
