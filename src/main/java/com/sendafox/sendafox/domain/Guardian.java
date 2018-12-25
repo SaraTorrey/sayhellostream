@@ -19,7 +19,7 @@ public class Guardian extends BaseEntity {
     private String phone;
 
     @OneToMany
-    private Set<Student> students;
+    private Set<Contact> contacts;
 
     public Guardian( ) {
 
@@ -51,14 +51,14 @@ public class Guardian extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public Set<Student> getStudents() {
+    public Set<Contact> getContacts() {
 
-        return students;
+        return contacts;
     }
 
-    public void setStudents( Set<Student> students ) {
+    public void setContacts(Set<Contact> contacts) {
 
-        this.students = students;
+        this.contacts = contacts;
     }
 
     public String getAddress1() {

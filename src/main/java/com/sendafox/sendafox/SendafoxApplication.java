@@ -6,11 +6,11 @@ import com.sayhellostream.sayhellostream.domain.LessonDay;
 import com.sayhellostream.sayhellostream.domain.LessonType;
 import com.sayhellostream.sayhellostream.domain.Payment;
 import com.sayhellostream.sayhellostream.domain.PaymentType;
-import com.sayhellostream.sayhellostream.domain.Student;
+import com.sayhellostream.sayhellostream.domain.Contact;
 import com.sayhellostream.sayhellostream.domain.UserRoleType;
 import com.sayhellostream.sayhellostream.repo.CompanyRepo;
 import com.sayhellostream.sayhellostream.repo.GuardianRepo;
-import com.sayhellostream.sayhellostream.repo.StudentRepo;
+import com.sayhellostream.sayhellostream.repo.ContactRepo;
 import com.sayhellostream.sayhellostream.repo.UserRepo;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
@@ -18,14 +18,10 @@ import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManagerFactory;
 import java.math.BigDecimal;
 
 @SpringBootApplication
@@ -36,7 +32,7 @@ public class SendafoxApplication {
 	CompanyRepo companyRepo;
 
 	@Autowired
-	StudentRepo studentRepo;
+	ContactRepo contactRepo;
 
 	@Autowired
 	GuardianRepo guardianRepo;
@@ -91,37 +87,37 @@ public class SendafoxApplication {
 
 	private void loadDataForCompany( Company company ) {
 
-		Student student = new Student("Dan", "Torrey", "Monday 5pm", company );
-		student.setLessonType(LessonType.VOICE );
-		student.setLessonDay(LessonDay.MONDAY );
-		student.setLessonTime( new org.joda.time.LocalTime( 14, 0, 0, 0 ) );
+		Contact contact = new Contact("Dan", "Torrey", "Monday 5pm", company );
+		contact.setLessonType(LessonType.VOICE );
+		contact.setLessonDay(LessonDay.MONDAY );
+		contact.setLessonTime(new org.joda.time.LocalTime(14, 0, 0, 0 ) );
 		
 		Payment payment = new Payment();
 		payment.setDate(LocalDate.now() );
 		payment.setAmount(Money.of(CurrencyUnit.USD, BigDecimal.TEN ) );
 		payment.setType(PaymentType.CASH );
-		payment.setStudent( student );
-		student.getPayments().add( payment );
+		payment.setContact(contact);
+		contact.getPayments().add(payment );
 
 		payment = new Payment();
 		payment.setDate( LocalDate.now().minusDays( 90 ) );
 		payment.setAmount( Money.of( CurrencyUnit.USD, BigDecimal.ONE ) );
 		payment.setType( PaymentType.CHECK );
-		payment.setStudent( student );
-		student.getPayments().add( payment );
+		payment.setContact(contact);
+		contact.getPayments().add(payment );
 
 		payment = new Payment();
 		payment.setDate( LocalDate.now().minusDays( 90 ) );
 		payment.setAmount( Money.of( CurrencyUnit.USD, new BigDecimal( "25" ) ) );
 		payment.setType( PaymentType.CHECK );
-		payment.setStudent( student );
-		student.getPayments().add( payment );
+		payment.setContact(contact);
+		contact.getPayments().add(payment );
 
-		studentRepo.save( student );
-		studentRepo.save( new Student( "Sara", "Torrey", "Monday 3pm", company ) );
-		studentRepo.save( new Student( "Nino", "Torrey", "Wednesday 4pm", company ) );
-		studentRepo.save( new Student( "Owen", "Torrey", "Monday 1pm", company ) );
-		studentRepo.save( new Student( "Cameron", "Torrey", "Monday 2pm", company ) );
+		contactRepo.save(contact);
+		contactRepo.save(new Contact("Sara", "Torrey", "Monday 3pm", company ) );
+		contactRepo.save(new Contact("Nino", "Torrey", "Wednesday 4pm", company ) );
+		contactRepo.save(new Contact("Owen", "Torrey", "Monday 1pm", company ) );
+		contactRepo.save(new Contact("Cameron", "Torrey", "Monday 2pm", company ) );
 
 	}
 }

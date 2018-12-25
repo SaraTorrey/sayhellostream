@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Student extends BaseEntity {
+public class Contact extends BaseEntity {
 
     private String firstName;
     private String lastName;
@@ -31,18 +31,18 @@ public class Student extends BaseEntity {
 
     private org.joda.time.LocalTime lessonTime;
 
-    @OneToMany( mappedBy = "student" )
+    @OneToMany( mappedBy = "contact" )
     @Cascade( CascadeType.ALL )
     private Set<Payment> payments = new HashSet<>();
 
     @ManyToOne( optional = false )
     private Company company;
 
-    public Student() {
+    public Contact() {
 
     }
 
-    public Student( String firstName, String lastName, String lessonSummary, Company company ) {
+    public Contact(String firstName, String lastName, String lessonSummary, Company company ) {
 
         this.firstName = firstName;
         this.lastName = lastName;
