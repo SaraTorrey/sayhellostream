@@ -32,7 +32,7 @@ public class ContactController {
     public String main( Model model ) {
 
         model.addAttribute( "contactList", contactService.findAll() );
-
+        System.out.println("getContacts");
         return "contacts/index";
     }
 

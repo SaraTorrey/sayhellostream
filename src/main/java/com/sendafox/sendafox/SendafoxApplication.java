@@ -60,8 +60,8 @@ public class SendafoxApplication {
 		company2.setName( "Company 2" );
 		companyRepo.save( company2 );
 //        loadDataForCompany( company2 );
-		createUser( "sara", "sara", "Sara", "Torrey", "sara.moravej@gmail.com", company2 );
-		createUser( "owen", "owen", "Oweny", "Torrey", "owen.torrey@gmail.com", company2 );
+		createUser( "sara", "sara", "Sara", "Torrey", "sara.moravej@gmail.com", company );
+		createUser( "owen", "owen", "Oweny", "Torrey", "owen.torrey@gmail.com", company );
 
 	}
 
