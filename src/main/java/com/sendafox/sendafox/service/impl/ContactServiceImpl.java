@@ -35,7 +35,7 @@ public class ContactServiceImpl extends BaseServiceImpl implements ContactServic
 
     @Override public String totalMonthlyRevenue() {
 
-        Iterable<Contact> all = contactRepo.findByCompanyId( currentCompanyId() );
+        Iterable<Contact> all = contactRepo.findByCompanyIdOrderByLastNameAscFirstNameAsc(currentCompanyId() );
 
 
         BigDecimal total = BigDecimal.ZERO;
@@ -75,7 +75,7 @@ public class ContactServiceImpl extends BaseServiceImpl implements ContactServic
     @Override
     public Iterable<Contact> findAll() {
 
-        return contactRepo.findByCompanyId(currentCompanyId());
+        return contactRepo.findByCompanyIdOrderByLastNameAscFirstNameAsc(currentCompanyId());
     }
 
     @Override public Payment addPayment( String contactId ) {

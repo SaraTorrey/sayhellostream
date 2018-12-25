@@ -12,6 +12,6 @@ public interface ContactRepo extends PagingAndSortingRepository<Contact, Long> {
     Contact findOneByIdAndCompanyId(Long id, Long companyId);
     void deleteOneByIdAndCompanyId(Long id, Long companyId);
 
-    List<Contact> findByCompanyId(Long companyId);
+    List<Contact> findByCompanyIdOrderByLastNameAscFirstNameAsc(Long companyId);
 
 }
