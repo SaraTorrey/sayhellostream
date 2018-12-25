@@ -7,3 +7,7 @@ body {
 .logo {
     color: grey;
 }   
+
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
