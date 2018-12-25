@@ -31,10 +31,10 @@ public class IndexController {
         return "landing";
     }
 
-    @GetMapping(value = "contacts")
-    public String contacts() {
+    @GetMapping(value = "index")
+    public String index() {
 
-        return "contacts";
+        return "index";
     }
 
     @GetMapping(value = "history")
