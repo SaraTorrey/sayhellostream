@@ -72,7 +72,7 @@ public class ContactController {
 
         contactService.delete( id );
 
-        return "redirect:/contacts/details/" + id ;
+        return "redirect:/contacts/";
     }
 
     @PostMapping( "edit" )

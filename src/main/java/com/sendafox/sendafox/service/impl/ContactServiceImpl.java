@@ -61,8 +61,9 @@ public class ContactServiceImpl extends BaseServiceImpl implements ContactServic
     @Transactional
     public void delete( String id ) {
 
-        contactRepo.findOneByIdAndCompanyId( IdObfuscator.dec( id ),
-                                             currentCompanyId() );
+        Contact contact = contactRepo.findOneByIdAndCompanyId(IdObfuscator.dec(id),
+                                                                          currentCompanyId());
+        contactRepo.delete(contact);
     }
 
     @Override
