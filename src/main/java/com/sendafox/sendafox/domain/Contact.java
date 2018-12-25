@@ -42,12 +42,13 @@ public class Contact extends BaseEntity {
 
     }
 
-    public Contact(String firstName, String lastName, String lessonSummary, Company company ) {
+    public Contact(String firstName, String lastName, String lessonSummary, Company company, String phone) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.lessonSummary = lessonSummary;
         this.company = company;
+        this.phone = phone;
     }
 
     public String getFirstName() {

@@ -30,21 +30,16 @@
                             <tr th:each="row : ${contactList}">
                                 <th scope="row">
                                     <div class="media align-items-center">
-                                        <a href="#" class="avatar rounded-circle mr-3">
-                                            <img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">
-                                        </a>
+                                        <!--<a href="#" class="avatar rounded-circle mr-3">-->
+                                            <!--<img alt="Image placeholder" src="../assets/img/theme/bootstrap.jpg">-->
+                                        <!--</a>-->
                                         <div class="media-body">
-                                            <span class="mb-0 text-sm">Argon Design System</span>
+                                            <span class="mb-0 text-sm" th:text="${row.firstName + ' ' + row.lastName}">Dan Torrey</span>
                                         </div>
                                     </div>
                                 </th>
-                                <td>
-                                    $2,500 USD
-                                </td>
-                                <td>
-                      <span class="badge badge-dot mr-4">
-                        <i class="bg-warning"></i> pending
-                      </span>
+                                <td  th:text="${row.phone}"> 2098148114</td>
+                                <td>None
                                 </td>
 
 

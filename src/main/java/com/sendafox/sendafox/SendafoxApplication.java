@@ -87,7 +87,7 @@ public class SendafoxApplication {
 
 	private void loadDataForCompany( Company company ) {
 
-		Contact contact = new Contact("Dan", "Torrey", "Monday 5pm", company );
+		Contact contact = new Contact("Dan", "Torrey", "Monday 5pm", company, "(832) 707-2323");
 		contact.setLessonType(LessonType.VOICE );
 		contact.setLessonDay(LessonDay.MONDAY );
 		contact.setLessonTime(new org.joda.time.LocalTime(14, 0, 0, 0 ) );
@@ -114,10 +114,10 @@ public class SendafoxApplication {
 		contact.getPayments().add(payment );
 
 		contactRepo.save(contact);
-		contactRepo.save(new Contact("Sara", "Torrey", "Monday 3pm", company ) );
-		contactRepo.save(new Contact("Nino", "Torrey", "Wednesday 4pm", company ) );
-		contactRepo.save(new Contact("Owen", "Torrey", "Monday 1pm", company ) );
-		contactRepo.save(new Contact("Cameron", "Torrey", "Monday 2pm", company ) );
+		contactRepo.save(new Contact("Sara", "Torrey", "Monday 3pm", company, "(832) 707-2323") );
+		contactRepo.save(new Contact("Nino", "Torrey", "Wednesday 4pm", company, "(832) 707-2323") );
+		contactRepo.save(new Contact("Owen", "Torrey", "Monday 1pm", company, "(832) 707-2323") );
+		contactRepo.save(new Contact("Cameron", "Torrey", "Monday 2pm", company, "(832) 707-2323") );
 
 	}
 }
