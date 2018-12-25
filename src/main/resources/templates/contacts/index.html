@@ -29,7 +29,7 @@
                             </thead>
                             <tbody>
                             <tr th:each="row : ${contactList}">
-                                <th scope="row">
+                                <th scope="row"><a th:href="@{'/contacts/edit/'} + ${row.ident}" class="btn btn-sm btn-primary">Edit</a></th>
                                 <th scope="row">
                                     <div class="media align-items-center">
                                         <!--<a href="#" class="avatar rounded-circle mr-3">-->
