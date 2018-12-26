@@ -14,11 +14,11 @@
         <div class="row">
             <div class="col">
                 <div class="card shadow">
-                    <div class="card-header border-0">
-                        <h3 class="mb-0">Contacts</h3>
-
-                        <a th:href="@{'/contacts/add/'}" class="btn btn-sm btn-success">Add Contact</a>
-                    </div>
+                    <div class="col-xl-12 pr-lg-0">
+                        <div class="col-12 d-flex justify-content-between p-3 pr-xl-5">Contacts
+                            <a href="#!" class="btn btn-sm btn-success">Add Contact</a>
+                        </div>
+                    </div>   
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
@@ -32,8 +32,8 @@
                             <tbody>
                             <tr th:each="row : ${contactList}">
                                 <th scope="row">
-                                    <a th:href="@{'/contacts/edit/'} + ${row.ident}" class="btn btn-sm btn-primary">Edit</a>
-                                    <a th:href="@{'/contacts/delete/'} + ${row.ident}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                                    <a th:href="@{'/contacts/edit/'} + ${row.ident}" class="btn btn-sm btn-link">Edit</a>
+                                    <a th:href="@{'/contacts/delete/'} + ${row.ident}" class="btn btn-sm btn-link" onclick="return confirm('Are you sure?')">Delete</a>
                                 </th>
                                 <th scope="row">
                                     <div class="media align-items-center">
