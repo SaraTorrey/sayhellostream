@@ -2,29 +2,33 @@ package com.sayhellostream.sayhellostream;
 
 import com.sayhellostream.sayhellostream.domain.AppUser;
 import com.sayhellostream.sayhellostream.domain.Company;
+import com.sayhellostream.sayhellostream.domain.Contact;
 import com.sayhellostream.sayhellostream.domain.LessonDay;
 import com.sayhellostream.sayhellostream.domain.LessonType;
 import com.sayhellostream.sayhellostream.domain.Payment;
 import com.sayhellostream.sayhellostream.domain.PaymentType;
-import com.sayhellostream.sayhellostream.domain.Contact;
 import com.sayhellostream.sayhellostream.domain.UserRoleType;
 import com.sayhellostream.sayhellostream.repo.CompanyRepo;
-import com.sayhellostream.sayhellostream.repo.GuardianRepo;
 import com.sayhellostream.sayhellostream.repo.ContactRepo;
+import com.sayhellostream.sayhellostream.repo.GuardianRepo;
 import com.sayhellostream.sayhellostream.repo.UserRepo;
+
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 
+import javax.annotation.PostConstruct;
+
 @SpringBootApplication
+@EnableScheduling
 public class SendafoxApplication {
 
 
