@@ -7,14 +7,17 @@ import com.sayhellostream.sayhellostream.domain.LessonDay;
 import com.sayhellostream.sayhellostream.domain.LessonType;
 import com.sayhellostream.sayhellostream.domain.Payment;
 import com.sayhellostream.sayhellostream.domain.PaymentType;
+import com.sayhellostream.sayhellostream.domain.TextMessage;
 import com.sayhellostream.sayhellostream.domain.UserRoleType;
 import com.sayhellostream.sayhellostream.repo.CompanyRepo;
 import com.sayhellostream.sayhellostream.repo.ContactRepo;
 import com.sayhellostream.sayhellostream.repo.GuardianRepo;
+import com.sayhellostream.sayhellostream.repo.TextMessageRepo;
 import com.sayhellostream.sayhellostream.repo.UserRepo;
 
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -42,6 +45,9 @@ public class SendafoxApplication {
 	GuardianRepo guardianRepo;
 
 	@Autowired
+	TextMessageRepo textMessageRepo;
+
+	@Autowired
 	UserRepo userRepo;
 
 	public static void main(String[] args) {
@@ -67,6 +73,11 @@ public class SendafoxApplication {
 		createUser( "sara", "sara", "Sara", "Torrey", "sara.moravej@gmail.com", company );
 		createUser( "owen", "owen", "Oweny", "Torrey", "owen.torrey@gmail.com", company );
 
+
+		TextMessage message = new TextMessage();
+		message.setBody( "Test message" );
+		message.setSendDate( DateTime.now().minusDays( 1 ) );
+		textMessageRepo.save( message );
 	}
 
 	private void createUser( String username,
