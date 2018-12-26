@@ -24,8 +24,10 @@ import javax.annotation.Resource;
 public class ContactController {
 
     public static final String PAYMENTS = "#payments";
+    
     @Resource
     ContactService contactService;
+    
     @Resource
     PaymentRepo paymentRepo;
 
