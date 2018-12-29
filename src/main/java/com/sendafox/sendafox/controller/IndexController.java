@@ -1,5 +1,6 @@
 package com.sayhellostream.sayhellostream.controller;
 
+
 import java.time.LocalDate;
 
 import javax.annotation.Resource;
@@ -7,15 +8,20 @@ import javax.annotation.Resource;
 import com.sayhellostream.sayhellostream.TwillioSender;
 import com.sayhellostream.sayhellostream.service.ContactService;
 
+
+import com.sayhellostream.sayhellostream.domain.TextMessage;
+
+
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/")
@@ -26,6 +32,11 @@ public class IndexController {
 
     @PostMapping(value = "send")
     public String send(@RequestParam String first, @RequestParam String last, @RequestParam String phone, @RequestParam String body) {
+
+        TextMessage reminderMessage = new TextMessage();
+        reminderMessage.body = "This is a reminder to send your text.";
+        reminderMessage.phoneNumber = "+18329203060";
+        reminderMessage.sendDate = DateTime.now().plusMinutes( 5 ).plusDays( 1 );
 
         TwillioSender.send(phone, "+19252332108", body);
 
@@ -49,6 +60,9 @@ public class IndexController {
 
     @GetMapping(value = "sendText")
     public String sendText() {
+
+
+
 
         return "sendText";
     }
