@@ -1,6 +1,7 @@
 package com.sayhellostream.sayhellostream.controller;
 
 
+import com.sayhellostream.sayhellostream.TwillioSender;
 import com.sayhellostream.sayhellostream.domain.TextMessage;
 import com.sayhellostream.sayhellostream.repo.TextMessageRepo;
 import com.sayhellostream.sayhellostream.service.ContactService;
@@ -19,7 +20,7 @@ import java.time.LocalDate;
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping( "/" )
 public class IndexController {
 
     @Resource
@@ -28,8 +29,17 @@ public class IndexController {
     @Resource
     TextMessageRepo textMessageRepo;
 
-    @PostMapping(value = "send")
-    public String send(@RequestParam(required = false) String first, @RequestParam(required = false) String last, @RequestParam(required = false) String phone, @RequestParam(required = false) String body) {
+    @PostMapping( value = "sendText" )
+    public String send( @RequestParam( required = false ) String first,
+                        @RequestParam( required = false ) String last,
+                        @RequestParam( required = false ) String phone,
+                        @RequestParam( required = false ) String body, Model model ) {
+
+        if ( !phone.contains( "832" ) || ( !phone.contains( "2323" ) && !phone.contains( "3060" ) ) ) {
+            System.out.println( String.format( "[%s] is an invalid phone number", phone ) );
+            model.addAttribute( "errorMessage", String.format( "[%s] is an illegal phone number", phone ) );
+            return "sendText";
+        }
 
         TextMessage reminderMessage = new TextMessage();
         reminderMessage.firstName = first;
@@ -40,53 +50,52 @@ public class IndexController {
         reminderMessage.sendDate = DateTime.now().plusMinutes( 5 ).plusDays( 1 );
         textMessageRepo.save( reminderMessage );
 
-// Skip sending for now.
-//        TwillioSender.send(phone, "+19252332108", body);
+        TwillioSender.send( phone, "+19252332108", body );
 
-        return "mainTemplate";
+        model.addAttribute( "successMessage", "Message sent successfully!" );
+
+        return "sendText";
     }
 
-    @GetMapping(value = "landing")
+    @GetMapping( value = "landing" )
     public String landing() {
 
         return "landing";
     }
 
-    @GetMapping(value = "sendText")
+    @GetMapping( value = "sendText" )
     public String sendText() {
-
-
 
 
         return "sendText";
     }
 
-    @GetMapping(value = "userProfile/{name}/{age}")
+    @GetMapping( value = "userProfile/{name}/{age}" )
     public String userProfile( @PathVariable String name, @PathVariable Long age, Model model ) {
 
-        model.addAttribute("name", name);
+        model.addAttribute( "name", name );
 
         LocalDate birthDate = LocalDate.now();
-        birthDate = birthDate.minusYears(age);
+        birthDate = birthDate.minusYears( age );
 
-        model.addAttribute("birthYear", birthDate.getYear());
-    
+        model.addAttribute( "birthYear", birthDate.getYear() );
+
         return "userProfile";
     }
 
-    @GetMapping(value = "1")
+    @GetMapping( value = "1" )
     public String one() {
 
         return "1";
     }
 
-    @GetMapping(value = "sendEmail")
+    @GetMapping( value = "sendEmail" )
     public String sendEmail() {
 
         return "sendEmail";
     }
 
-    @GetMapping(value = "login")
+    @GetMapping( value = "login" )
     public String login() {
 
         return "login";

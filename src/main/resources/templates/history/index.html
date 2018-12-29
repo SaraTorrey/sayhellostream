@@ -33,7 +33,7 @@
                             <tbody>
                             <tr th:each="row : ${scheduledList}">
                                 <td th:text="${row.firstName + ' ' + row.lastName}"></td>
-                                <td th:text="${row.body}"></td>
+                                <td th:text="${row.phoneNumber}"></td>
                                 <td th:text="${row.body}"></td>
                                 <td th:text="${@webServiceImpl.convert(row.created)}"></td>
                             </tr>
@@ -73,7 +73,7 @@
                             <tbody>
                             <tr th:each="row : ${sentList}">
                                 <td th:text="${row.firstName + ' ' + row.lastName}"></td>
-                                <td th:text="${row.body}"></td>
+                                <td th:text="${row.phoneNumber}"></td>
                                 <td th:text="${row.body}"></td>
                                 <td th:text="${@webServiceImpl.convert(row.created)}"></td>
                             </tr>
