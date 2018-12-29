@@ -9,6 +9,7 @@ import com.sayhellostream.sayhellostream.service.WebService;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
     @Autowired
     WebService webService;
+
+    @Value( "${spring.profiles.active}")
+    private String activeProfile;
 
     @Override
     @Scheduled( fixedDelay = 10000 )
@@ -45,16 +49,15 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
             System.out.println( String.format( "Adding another message.", messages.size() ) );
 
-            DateTime scheduledDate = DateTime.now().plusMinutes( 1 );
+            DateTime scheduledDate = DateTime.now().plusMinutes( 30 );
 
             TextMessage message = new TextMessage();
-            message.setBody( String.format( "Message scheduled at [%s]", webService.convert( scheduledDate ) ) );
+            message.setBody( String.format( "Message scheduled at [%s] in [%s]", webService.convert( scheduledDate ), activeProfile ) );
             message.setFirstName( "Dan" );
             message.setFirstName( "Torrey" );
             message.setPhoneNumber( "8327072323" );
             message.setSendDate( scheduledDate );
             textMessageRepo.save( message );
         }
-
     }
 }
