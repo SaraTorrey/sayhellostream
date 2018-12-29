@@ -64,14 +64,14 @@ public class SendafoxApplication {
 		loadDataForCompany( company );
 
 
-		createUser( "dan", "dan", "Dan", "Torrey", "danielowentorrey@gmail.com", company );
+		createUser( "dan", "dantorrey", "Dan", "Torrey", "danielowentorrey@gmail.com", company );
 
 		Company company2 = new Company();
 		company2.setName( "Company 2" );
 		companyRepo.save( company2 );
 //        loadDataForCompany( company2 );
-		createUser( "sara", "sara", "Sara", "Torrey", "sara.moravej@gmail.com", company );
-		createUser( "owen", "owen", "Oweny", "Torrey", "owen.torrey@gmail.com", company );
+		createUser( "sara", "saratorrey", "Sara", "Torrey", "sara.moravej@gmail.com", company );
+		createUser( "owen", "owentorrey", "Oweny", "Torrey", "owen.torrey@gmail.com", company );
 
 
 		TextMessage message = new TextMessage();
