@@ -1,7 +1,16 @@
 package com.sayhellostream.sayhellostream.controller;
 
+
+import java.time.LocalDate;
+
+import javax.annotation.Resource;
+
 import com.sayhellostream.sayhellostream.TwillioSender;
+import com.sayhellostream.sayhellostream.service.ContactService;
+
+
 import com.sayhellostream.sayhellostream.domain.TextMessage;
+
 
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
@@ -17,6 +26,9 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+
+    @Resource
+    ContactService contactService;
 
     @PostMapping(value = "send")
     public String send(@RequestParam String first, @RequestParam String last, @RequestParam String phone, @RequestParam String body) {
@@ -38,7 +50,8 @@ public class IndexController {
     }
 
     @GetMapping(value = "history")
-    public String history() {
+    public String history( Model model ) {
+        model.addAttribute( "contactList", contactService.findAll() );
 
         return "history";
     }
