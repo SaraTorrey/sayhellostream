@@ -19,18 +19,32 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
     TextMessageRepo textMessageRepo;
 
     @Override
-    @Scheduled( fixedDelay = 3000 )
+    @Scheduled( fixedDelay = 10000 )
     public void checkForMessagesToSend() {
 
 
         System.out.println( "Checking for messages to send..." );
-        List<TextMessage> messages = textMessageRepo.findBySendDateLessThanEqual( DateTime.now() );
+        List<TextMessage> messages = textMessageRepo.findBySendDateLessThanEqualAndWasSentFalse( DateTime.now() );
 
         if ( messages.isEmpty() ) {
             System.out.println( "No messages found" );
         }
         else {
-            System.out.println( String.format( "[%d] messages found.", messages.size() ) );
+            System.out.println( String.format( "[%d] messages found. Sending.", messages.size() ) );
+
+            for ( TextMessage message : messages ) {
+                message.setWasSent( true );
+                textMessageRepo.save( message );
+            }
+
+            System.out.println( String.format( "Adding another message.", messages.size() ) );
+
+            TextMessage message = new TextMessage();
+            message.setBody( "Message sent from scheduled service." );
+            message.setFirstName( "Nino" );
+            message.setFirstName( "Torrey" );
+            message.setSendDate( DateTime.now().plusMinutes( 1 ) );
+            textMessageRepo.save( message );
         }
 
     }

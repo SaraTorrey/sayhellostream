@@ -75,7 +75,25 @@ public class SendafoxApplication {
 
 
 		TextMessage message = new TextMessage();
-		message.setBody( "Test message" );
+		message.setFirstName( "Sara" );
+		message.setLastName ( "Torrey" );
+		message.setBody( "Test scheduled message" );
+		message.setSendDate( DateTime.now().minusDays( 1 ) );
+		textMessageRepo.save( message );
+
+		message = new TextMessage();
+		message.setBody( "Test sent message" );
+		message.setFirstName( "Dan" );
+		message.setLastName ( "Torrey" );
+		message.setWasSent( true );
+		message.setSendDate( DateTime.now().minusDays( 1 ) );
+		textMessageRepo.save( message );
+
+		message = new TextMessage();
+		message.setBody( "Test sent message2" );
+		message.setFirstName( "Dan" );
+		message.setLastName( "Torrey" );
+		message.setWasSent( true );
 		message.setSendDate( DateTime.now().minusDays( 1 ) );
 		textMessageRepo.save( message );
 	}

@@ -8,11 +8,33 @@ import javax.persistence.Entity;
 @Entity
 public class TextMessage extends BaseEntity {
 
-    public String phoneNumber;
-    public String body;
+    public String firstName = "";
+    public String lastName = "";
+    public String phoneNumber = "";
+    public String body = "";
     public boolean wasSent = false;
     @Type( type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime" )
     public DateTime sendDate;
+
+    public String getFirstName() {
+
+        return firstName;
+    }
+
+    public void setFirstName( String firstName ) {
+
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+
+        return lastName;
+    }
+
+    public void setLastName( String lastName ) {
+
+        this.lastName = lastName;
+    }
 
     public String getPhoneNumber() {
 
