@@ -40,7 +40,9 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
             System.out.println( String.format( "Adding another message.", messages.size() ) );
 
             TextMessage message = new TextMessage();
-            message.setBody( "Test message" );
+            message.setBody( "Message sent from scheduled service." );
+            message.setFirstName( "Nino" );
+            message.setFirstName( "Torrey" );
             message.setSendDate( DateTime.now().plusMinutes( 1 ) );
             textMessageRepo.save( message );
         }

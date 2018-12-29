@@ -15,7 +15,9 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="col-xl-12 pr-lg-0">
+                        <div class="col-12 d-flex justify-content-between p-3 pr-xl-5">Scheduled Messages
 
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -30,10 +32,10 @@
                             </thead>
                             <tbody>
                             <tr th:each="row : ${scheduledList}">
-                                <td  th:text="${row.firstName + ' ' + row.lastName}"></td>
-                                <td  th:text="${row.body}"></td>
-                                <td  th:text="${row.body}"></td>
-                                <td  th:text="${row.created}"></td>
+                                <td th:text="${row.firstName + ' ' + row.lastName}"></td>
+                                <td th:text="${row.body}"></td>
+                                <td th:text="${row.body}"></td>
+                                <td th:text="${@webServiceImpl.convert(row.created)}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -48,40 +50,42 @@
     </div>
     <br/>
     <div class="container-fluid mt--10 mb-5">
-            <!-- Table -->
-            <div class="row">
-                <div class="col">
-                    <div class="card shadow">
-                        <div class="col-xl-12 pr-lg-0">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="col-xl-12 pr-lg-0">
+                        <div class="col-12 d-flex justify-content-between p-3 pr-xl-5">Sent Messages
 
-                        </div>   
-                        <div class="table-responsive">
-                            <table class="table align-items-center table-flush">
-                                <thead class="thead-light">
-                                <tr class="ml-5">
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Message</th>
-                                    <th scope="col">Date/Time Sent</th>
-                                </tr>
-                                
-                                </thead>
-                                <tbody>
-                                <tr th:each="row : ${sentList}">
-                                    <td  th:text="${row.firstName + ' ' + row.lastName}"></td>
-                                    <td  th:text="${row.body}"></td>
-                                    <td  th:text="${row.body}"></td>
-                                    <td  th:text="${row.created}"></td>
-                                </tr>
-                                </tbody>
-                            </table>
                         </div>
-                        <div class="card-footer py-4">
-    
-                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr class="ml-5">
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Date/Time Sent</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr th:each="row : ${sentList}">
+                                <td th:text="${row.firstName + ' ' + row.lastName}"></td>
+                                <td th:text="${row.body}"></td>
+                                <td th:text="${row.body}"></td>
+                                <td th:text="${@webServiceImpl.convert(row.created)}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer py-4">
+
                     </div>
                 </div>
             </div>
-      </div>
-    </div>  
+        </div>
+    </div>
 </div>
+    </div>
