@@ -1,9 +1,11 @@
 package com.sayhellostream.sayhellostream.service.impl;
 
 
+import com.sayhellostream.sayhellostream.TwillioSender;
 import com.sayhellostream.sayhellostream.domain.TextMessage;
 import com.sayhellostream.sayhellostream.repo.TextMessageRepo;
 import com.sayhellostream.sayhellostream.service.ScheduledService;
+import com.sayhellostream.sayhellostream.service.WebService;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
     @Autowired
     TextMessageRepo textMessageRepo;
+
+    @Autowired
+    WebService webService;
 
     @Override
     @Scheduled( fixedDelay = 10000 )
@@ -34,16 +39,20 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
             for ( TextMessage message : messages ) {
                 message.setWasSent( true );
+                TwillioSender.send( message.phoneNumber, "+19252332108", message.body );
                 textMessageRepo.save( message );
             }
 
             System.out.println( String.format( "Adding another message.", messages.size() ) );
 
+            DateTime scheduledDate = DateTime.now().plusMinutes( 1 );
+
             TextMessage message = new TextMessage();
-            message.setBody( "Message sent from scheduled service." );
-            message.setFirstName( "Nino" );
+            message.setBody( String.format( "Message scheduled at [%s]", webService.convert( scheduledDate ) ) );
+            message.setFirstName( "Dan" );
             message.setFirstName( "Torrey" );
-            message.setSendDate( DateTime.now().plusMinutes( 1 ) );
+            message.setPhoneNumber( "8327072323" );
+            message.setSendDate( scheduledDate );
             textMessageRepo.save( message );
         }
 
