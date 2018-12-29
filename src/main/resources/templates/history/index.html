@@ -1,0 +1,87 @@
+<!-- Page content -->
+<div xmlns:layout="http://www.thymeleaf.org" xmlns:th="http://www.thymeleaf.org"
+     layout:decorator="mainTemplate" layout:fragment="content">
+
+    <div class="header pb-6 pt-5 pt-lg-8 d-flex align-items-center">
+        <!-- Mask -->
+
+        <!-- Header container -->
+
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="col-xl-12 pr-lg-0">
+
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <thead class="thead-light">
+                            <tr class="ml-5">
+                                <th scope="col">Name</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Date/Time Sent</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr th:each="row : ${scheduledList}">
+                                <td  th:text="${row.firstName + ' ' + row.lastName}"></td>
+                                <td  th:text="${row.body}"></td>
+                                <td  th:text="${row.body}"></td>
+                                <td  th:text="${row.created}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-footer py-4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <br/>
+    <div class="container-fluid mt--10 mb-5">
+            <!-- Table -->
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="col-xl-12 pr-lg-0">
+
+                        </div>   
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush">
+                                <thead class="thead-light">
+                                <tr class="ml-5">
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Date/Time Sent</th>
+                                </tr>
+                                
+                                </thead>
+                                <tbody>
+                                <tr th:each="row : ${sentList}">
+                                    <td  th:text="${row.firstName + ' ' + row.lastName}"></td>
+                                    <td  th:text="${row.body}"></td>
+                                    <td  th:text="${row.body}"></td>
+                                    <td  th:text="${row.created}"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer py-4">
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>  
+</div>

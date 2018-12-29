@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        <form>
+                        <form th:action="@{'/send/'}" method="post">
                             <h6 class="heading-small text-muted mb-4">Recepient's information</h6>
                             
                             <hr class="my-4" /> 
@@ -32,19 +32,19 @@
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-first-name">First name</label>
-                                            <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="Sara">
+                                            <input type="text" id="input-first-name" name="first" class="form-control form-control-alternative" placeholder="First name" >
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
                                             <label class="form-control-label" for="input-last-name">Last name</label>
-                                            <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="Torrey">
+                                            <input type="text" id="input-last-name" name="last" class="form-control form-control-alternative" placeholder="Last name" >
                                         </div>
                                     </div>
                                     <div class="col-lg-4">
                                         <div class="form-group">
-                                            <label class="form-control-label" for="input-phone">Phone Number</label>
-                                            <input type="tel" id="input-phone" class="form-control form-control-alternative" placeholder="(832) 111-1221">
+                                            <label class="form-control-label" for="phone">Phone Number</label>
+                                            <input type="tel" id="input-phone" name="phone" class="form-control form-control-alternative" placeholder="(832) 111-1221">
                                         </div>
                                     </div>
                                     <div class="col-xl-12 pr-lg-0">
@@ -61,7 +61,7 @@
                             <div class="pl-lg-1">
                                 <div class="form-group">
                                     <label>Text</label>
-                                    <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ...">Type your text message here.</textarea>
+                                    <textarea rows="4" name="body" class="form-control form-control-alternative" placeholder="Type your text message here."></textarea>
                                 </div>
                                 <div class="form-group">
                                 <div class="input-group input-group-alternative">
@@ -74,7 +74,7 @@
                             </div>
                                 <div class="col-xl-12 pr-lg-0">
                                     <div class="col-12 text-right">
-                                        <a href="#!" class="btn btn-sm btn-primary">Send</a>
+                                        <button type="submit" class="btn btn-sm btn-primary">Send</button>
                                     </div>
                                 </div>  
                             

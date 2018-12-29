@@ -1,16 +1,9 @@
 package com.sayhellostream.sayhellostream.controller;
 
 
-import java.time.LocalDate;
-
-import javax.annotation.Resource;
-
-import com.sayhellostream.sayhellostream.TwillioSender;
-import com.sayhellostream.sayhellostream.service.ContactService;
-
-
 import com.sayhellostream.sayhellostream.domain.TextMessage;
-
+import com.sayhellostream.sayhellostream.repo.TextMessageRepo;
+import com.sayhellostream.sayhellostream.service.ContactService;
 
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
@@ -23,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 
+import javax.annotation.Resource;
+
 @Controller
 @RequestMapping("/")
 public class IndexController {
@@ -30,15 +25,23 @@ public class IndexController {
     @Resource
     ContactService contactService;
 
+    @Resource
+    TextMessageRepo textMessageRepo;
+
     @PostMapping(value = "send")
-    public String send(@RequestParam String first, @RequestParam String last, @RequestParam String phone, @RequestParam String body) {
+    public String send(@RequestParam(required = false) String first, @RequestParam(required = false) String last, @RequestParam(required = false) String phone, @RequestParam(required = false) String body) {
 
         TextMessage reminderMessage = new TextMessage();
-        reminderMessage.body = "This is a reminder to send your text.";
-        reminderMessage.phoneNumber = "+18329203060";
+        reminderMessage.firstName = first;
+        reminderMessage.lastName = last;
+        reminderMessage.body = body;
+        reminderMessage.phoneNumber = phone;
+        reminderMessage.wasSent = true;
         reminderMessage.sendDate = DateTime.now().plusMinutes( 5 ).plusDays( 1 );
+        textMessageRepo.save( reminderMessage );
 
-        TwillioSender.send(phone, "+19252332108", body);
+// Skip sending for now.
+//        TwillioSender.send(phone, "+19252332108", body);
 
         return "mainTemplate";
     }
@@ -48,15 +51,6 @@ public class IndexController {
 
         return "landing";
     }
-
-    @GetMapping(value = "history")
-    public String history( Model model ) {
-        model.addAttribute( "contactList", contactService.findAll() );
-
-        return "history";
-    }
-
-    // Pages
 
     @GetMapping(value = "sendText")
     public String sendText() {

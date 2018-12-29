@@ -12,4 +12,5 @@ import java.util.List;
 public interface TextMessageRepo extends CrudRepository<TextMessage, Long> {
 
     List<TextMessage> findBySendDateLessThanEqualAndWasSentFalse( DateTime sendDate );
+    List<TextMessage> findByWasSentOrderByCreatedDesc( boolean wasSent );
 }
