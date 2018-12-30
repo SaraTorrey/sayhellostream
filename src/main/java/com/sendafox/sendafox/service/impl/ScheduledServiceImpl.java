@@ -49,10 +49,13 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
             System.out.println( String.format( "Adding another message.", messages.size() ) );
 
-            DateTime scheduledDate = DateTime.now().plusMinutes( 30 );
+            DateTime scheduledDate = DateTime.now().plusMinutes( 720 );
 
             TextMessage message = new TextMessage();
-            message.setBody( String.format( "Message scheduled at [%s] in [%s]", webService.convert( scheduledDate ), activeProfile ) );
+            message.setBody( String.format( "Message scheduled to send at [%s] on [%s] in [%s]",
+                                            webService.convert( scheduledDate ),
+                                            webService.convert( DateTime.now() ),
+                                            activeProfile ) );
             message.setFirstName( "Dan" );
             message.setFirstName( "Torrey" );
             message.setPhoneNumber( "8327072323" );
