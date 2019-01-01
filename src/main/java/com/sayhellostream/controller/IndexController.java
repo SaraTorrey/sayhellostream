@@ -1,7 +1,7 @@
 package com.sayhellostream.controller;
 
 
-import com.sayhellostream.TwillioSender;
+import com.sayhellostream.TwillioClient;
 import com.sayhellostream.service.ContactService;
 import com.sayhellostream.domain.TextMessage;
 import com.sayhellostream.repo.TextMessageRepo;
@@ -50,7 +50,7 @@ public class IndexController {
         reminderMessage.sendDate = DateTime.now().plusMinutes( 5 ).plusDays( 1 );
         textMessageRepo.save( reminderMessage );
 
-        TwillioSender.send( phone, "+19252332108", body );
+        TwillioClient.send( phone, "+19252332108", body );
 
         model.addAttribute( "successMessage", "Message sent successfully!" );
 

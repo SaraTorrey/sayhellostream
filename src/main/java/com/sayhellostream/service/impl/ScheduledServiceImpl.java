@@ -1,7 +1,7 @@
 package com.sayhellostream.service.impl;
 
 
-import com.sayhellostream.TwillioSender;
+import com.sayhellostream.TwillioClient;
 import com.sayhellostream.repo.TextMessageRepo;
 import com.sayhellostream.service.ScheduledService;
 import com.sayhellostream.service.WebService;
@@ -43,7 +43,7 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
             for ( TextMessage message : messages ) {
                 message.setWasSent( true );
-                TwillioSender.send( message.phoneNumber, "+19252332108", message.body );
+                TwillioClient.send( message.phoneNumber, "+19252332108", message.body );
                 textMessageRepo.save( message );
             }
 
