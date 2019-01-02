@@ -10,6 +10,16 @@
             "mainClass": "com.sayhellostream.SendafoxApplication",
             "args": "",
             "projectName": "sayhellostream"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SayHelloStreamApplication<sayhellostream>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.sayhellostream.SayHelloStreamApplication",
+            "projectName": "sayhellostream",
+            "args": ""
         }
     ]
 }
