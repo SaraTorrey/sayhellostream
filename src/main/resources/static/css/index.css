@@ -11,3 +11,14 @@ body {
 .navbar-dark .navbar-nav .nav-link {
     color: white;
 }
+
+@media (max-width: 400px) {
+    img.logo {
+        transform: scale(0.3);
+    }
+}
+@media (min-width: 401px) {
+    img.logo {
+        transform: scale(0.5);
+    }
+}
