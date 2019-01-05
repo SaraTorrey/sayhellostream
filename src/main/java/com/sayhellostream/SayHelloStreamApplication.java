@@ -34,7 +34,6 @@ import javax.annotation.PostConstruct;
 @EnableScheduling
 public class SayHelloStreamApplication {
 
-
 	@Autowired
 	CompanyRepo companyRepo;
 
