@@ -8,6 +8,8 @@ import org.apache.commons.lang.StringUtils;
 public class TwillioClient {
 
     // Find your Account Sid and Token at twilio.com/console
+
+    // Set these as environment variables in order to use
     public static String accountSid = System.getenv("TWILLIO_ACCOUNT_SID");
     public static String authToken = System.getenv("TWILLIO_AUTH_TOKEN");
 
