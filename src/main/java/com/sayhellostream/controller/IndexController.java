@@ -1,6 +1,7 @@
 package com.sayhellostream.controller;
 
 
+import com.sayhellostream.TwillioClient;
 import com.sayhellostream.domain.TextMessage;
 import com.sayhellostream.repo.TextMessageRepo;
 import com.sayhellostream.service.ContactService;
@@ -43,18 +44,21 @@ public class IndexController {
             return "sendText";
         }
 
-
         TextMessage reminderMessage = new TextMessage();
         reminderMessage.firstName = sendTextView.getFirstName();
         reminderMessage.lastName = sendTextView.getLastName();
         reminderMessage.body = sendTextView.getTextBody();
         reminderMessage.phoneNumber = phone;
-        reminderMessage.wasSent = true;
 
         if (sendTextView.getDoSchedule()) {
             reminderMessage.sendDate = sendTextView.getScheduleDateTime();
+            reminderMessage.wasSent = false;
         } else {
+
+            TwillioClient.send(sendTextView.getPhoneNumber(), sendTextView.getTextBody() );
+
             reminderMessage.sendDate = DateTime.now();
+            reminderMessage.wasSent = true;
         }
 
         textMessageRepo.save(reminderMessage);

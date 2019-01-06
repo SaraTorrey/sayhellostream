@@ -43,24 +43,9 @@ public class ScheduledServiceImpl extends BaseServiceImpl implements ScheduledSe
 
             for ( TextMessage message : messages ) {
                 message.setWasSent( true );
-                TwillioClient.send( message.phoneNumber, "+19252332108", message.body );
+                TwillioClient.send(message.phoneNumber, message.body );
                 textMessageRepo.save( message );
             }
-
-            System.out.println( String.format( "Adding another message.", messages.size() ) );
-
-            DateTime scheduledDate = DateTime.now().plusMinutes( 720 );
-
-            TextMessage message = new TextMessage();
-            message.setBody( String.format( "Message scheduled to send at [%s] on [%s] in [%s]",
-                                            webService.convert( scheduledDate ),
-                                            webService.convert( DateTime.now() ),
-                                            activeProfile ) );
-            message.setFirstName( "Dan" );
-            message.setFirstName( "Torrey" );
-            message.setPhoneNumber( "8327072323" );
-            message.setSendDate( scheduledDate );
-            textMessageRepo.save( message );
         }
     }
 }

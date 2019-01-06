@@ -23,7 +23,7 @@ public class SendafoxApplicationTests {
 		listOfStudents.addRecipent(new Recipient("Sara","", "+18329203060"));
 
 		for (Recipient recipient : listOfStudents.recipients) {
-			TwillioClient.send(recipient.phone, "+19252332108", "Hi " + recipient.firstName);
+			TwillioClient.send(recipient.phone, "Hi " + recipient.firstName);
 
 			// Saving to DB
 		}

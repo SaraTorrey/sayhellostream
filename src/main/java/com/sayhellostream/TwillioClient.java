@@ -11,10 +11,10 @@ public class TwillioClient {
     public static String accountSid = System.getenv("TWILLIO_ACCOUNT_SID");
     public static String authToken = System.getenv("TWILLIO_AUTH_TOKEN");
 
-    // Make sure from phone is in format +19254444444
+    // Make sure from phone is in format +15555555555
     public static String fromPhone = System.getenv("TWILLIO_FROM_PHONE");
 
-    public static void send(String to, String from, String body) {
+    public static void send(String to, String body) {
 
         if (configInitialized()) {
 
@@ -22,7 +22,7 @@ public class TwillioClient {
 
             Message message = Message.creator(
                     new PhoneNumber(to),
-                    new PhoneNumber(from),
+                    new PhoneNumber(fromPhone),
                     body).create();
 
             System.out.println(message.getSid());
