@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <label class="form-control-label" for="phone">Phone Number</label>
+                                        <label class="form-control-label" >Phone Number</label>
                                         <input type="tel" id="input-phone" name="phone"
                                                class="form-control form-control-alternative"
                                                placeholder="(832) 111-1221"
@@ -78,27 +78,74 @@
                             </div>
                         </div>
 
-                        <!-- Description -->
-
                         <div class="pl-lg-1">
                             <div class="form-group">
-                                <label class="form-control-label" for="phone">Text Body</label>
+                                <label class="form-control-label" >Text Body</label>
                                 <textarea rows="4" name="body" class="form-control form-control-alternative"
                                           placeholder="Type your text message here."
                                           th:field="*{textBody}"></textarea>
                             </div>
+                        </div>
 
+                        <div class="pl-lg-1">
+                            <div class="form-group">
+                                <label class="form-control-label" >Send Later</label>
+                                <input type="checkbox" name="doSchedule" th:checked="${sendTextView.doSchedule}" th:field="*{doSchedule}" />
+                            </div>
+
+                        </div>
+
+
+                        <div class="mb-0 scheduleBlock">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="form-control-label" for="input-first-name">Date/Time to Send</label>
+                                        <input type="text" id="input-first-name" name="first"
+                                               class="form-control form-control-alternative"
+                                               th:field="*{scheduleDateTime}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pl-lg-1">
                             <div class="col-xl-12 pr-lg-0">
                                 <div class="col-12 text-right">
                                     <button type="submit" class="btn btn-md btn-default">Send</button>
                                 </div>
                             </div>
-
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+
+      function handleCheckboxChange() {
+        if ($('#doSchedule1').is(':checked')) {
+          $('.scheduleBlock').show()
+        }
+        else {
+          $('.scheduleBlock').hide()
+        }
+      }
+
+      $( document ).ready(function() {
+
+        handleCheckboxChange();
+
+        $('#doSchedule1').change(function() {
+          handleCheckboxChange();
+        });
+      });
+
+
+      /*]]>*/
+    </script>
 </div>
 

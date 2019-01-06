@@ -1,5 +1,8 @@
 package com.sayhellostream.view;
 
+import com.sayhellostream.converter.DateTimeFormatter;
+import org.joda.time.DateTime;
+
 public class SendTextView {
 
     private String firstName;
@@ -9,7 +12,15 @@ public class SendTextView {
 
     private Boolean doSchedule;
 
-    private String scheduleDateTime;
+    private DateTime scheduleDateTime;
+
+    public static SendTextView newInstance() {
+
+        SendTextView view = new SendTextView();
+        view.setScheduleDateTime(DateTime.now());
+
+        return view;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -51,11 +62,11 @@ public class SendTextView {
         this.doSchedule = doSchedule;
     }
 
-    public String getScheduleDateTime() {
+    public DateTime getScheduleDateTime() {
         return scheduleDateTime;
     }
 
-    public void setScheduleDateTime(String scheduleDateTime) {
+    public void setScheduleDateTime(DateTime scheduleDateTime) {
         this.scheduleDateTime = scheduleDateTime;
     }
 }
