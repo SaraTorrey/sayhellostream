@@ -6,10 +6,13 @@ import com.sayhellostream.service.ContactService;
 import com.sayhellostream.domain.TextMessage;
 import com.sayhellostream.repo.TextMessageRepo;
 
+import com.sayhellostream.view.SendTextView;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping( "/" )
@@ -30,31 +34,33 @@ public class IndexController {
     TextMessageRepo textMessageRepo;
 
     @PostMapping( value = "sendText" )
-    public String send( @RequestParam( required = false ) String first,
-                        @RequestParam( required = false ) String last,
-                        @RequestParam( required = false ) String phone,
-                        @RequestParam( required = false ) String body, Model model ) {
+    public String send(@Valid @ModelAttribute SendTextView sendTextView, Model model, BindingResult result) {
 
-        if ( !phone.contains( "832" ) || ( !phone.contains( "2323" ) && !phone.contains( "3060" ) ) ) {
+        if (result.hasErrors()) {
+            model.addAttribute( "errorMessage", "An error occurred" );
+        }
+
+        String phone = sendTextView.getPhoneNumber();
+        if (!phone.contains("832" ) || (!phone.contains("2323" ) && !phone.contains("3060" ) ) ) {
             System.out.println( String.format( "[%s] is an invalid phone number", phone ) );
             model.addAttribute( "errorMessage", String.format( "[%s] is an illegal phone number", phone ) );
             return "sendText";
         }
 
-        TextMessage reminderMessage = new TextMessage();
-        reminderMessage.firstName = first;
-        reminderMessage.lastName = last;
-        reminderMessage.body = body;
+        TextMessage reminderMessage = new TextMessage();≠
+        reminderMessage.firstName = sendTextView.getFirstName();
+        reminderMessage.lastName = sendTextView.getLastName();
+        reminderMessage.body = sendTextView.getTextBody();
         reminderMessage.phoneNumber = phone;
         reminderMessage.wasSent = true;
         reminderMessage.sendDate = DateTime.now().plusMinutes( 5 ).plusDays( 1 );
         textMessageRepo.save( reminderMessage );
 
-        TwillioClient.send( phone, "+19252332108", body );
+        TwillioClient.send( phone, "+19252332108", sendTextView.getTextBody() );
 
         model.addAttribute( "successMessage", "Message sent successfully!" );
 
-        return "sendText";
+        return "redirect:/sendText";
     }
 
     @GetMapping( value = "landing" )
@@ -63,9 +69,11 @@ public class IndexController {
         return "landing";
     }
 
-    @GetMapping( value = "sendText" )
-    public String sendText() {
+    @GetMapping(value = "sendText")
+    public String sendText(Model model) {
 
+        SendTextView view = new SendTextView();
+        model.addAttribute("sendTextView", view);
 
         return "sendText";
     }
