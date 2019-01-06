@@ -45,21 +45,25 @@
 
 
                 <div class="card-body ">
-                    <form th:action="@{'/sendText/'}" method="post">
+                    <form th:action="@{'/sendText/'}" method="post" th:object="${sendTextView}">
                         <div class="mb-0">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-first-name">First name</label>
                                         <input type="text" id="input-first-name" name="first"
-                                               class="form-control form-control-alternative" placeholder="First name">
+                                               class="form-control form-control-alternative"
+                                               placeholder="First name"
+                                               th:field="*{firstName}">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label class="form-control-label" for="input-last-name">Last name</label>
                                         <input type="text" id="input-last-name" name="last"
-                                               class="form-control form-control-alternative" placeholder="Last name">
+                                               class="form-control form-control-alternative"
+                                               placeholder="Last name"
+                                               th:field="*{lastName}">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
@@ -67,7 +71,8 @@
                                         <label class="form-control-label" for="phone">Phone Number</label>
                                         <input type="tel" id="input-phone" name="phone"
                                                class="form-control form-control-alternative"
-                                               placeholder="(832) 111-1221"/>
+                                               placeholder="(832) 111-1221"
+                                               th:field="*{phoneNumber}"/>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +84,8 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="phone">Text Body</label>
                                 <textarea rows="4" name="body" class="form-control form-control-alternative"
-                                          placeholder="Type your text message here."></textarea>
+                                          placeholder="Type your text message here."
+                                          th:field="*{textBody}"></textarea>
                             </div>
 
                             <div class="col-xl-12 pr-lg-0">
