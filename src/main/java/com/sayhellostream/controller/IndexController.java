@@ -2,11 +2,11 @@ package com.sayhellostream.controller;
 
 
 import com.sayhellostream.TwillioClient;
-import com.sayhellostream.service.ContactService;
 import com.sayhellostream.domain.TextMessage;
 import com.sayhellostream.repo.TextMessageRepo;
-
+import com.sayhellostream.service.ContactService;
 import com.sayhellostream.view.SendTextView;
+
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 
@@ -47,7 +46,7 @@ public class IndexController {
             return "sendText";
         }
 
-        TextMessage reminderMessage = new TextMessage();≠
+        TextMessage reminderMessage = new TextMessage();
         reminderMessage.firstName = sendTextView.getFirstName();
         reminderMessage.lastName = sendTextView.getLastName();
         reminderMessage.body = sendTextView.getTextBody();
@@ -67,6 +66,12 @@ public class IndexController {
     public String landing() {
 
         return "landing";
+    }
+
+    @GetMapping( value = "" )
+    public String indexRedirect() {
+
+        return "redirect:/sendText";
     }
 
     @GetMapping(value = "sendText")
