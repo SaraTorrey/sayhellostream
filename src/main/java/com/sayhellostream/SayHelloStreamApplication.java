@@ -77,6 +77,7 @@ public class SayHelloStreamApplication {
 		message.setFirstName( "Sara" );
 		message.setLastName ( "Torrey" );
 		message.setBody( "Test scheduled message" );
+		message.setWasSent( true );
 		message.setSendDate( DateTime.now().minusDays( 1 ) );
 		textMessageRepo.save( message );
 
